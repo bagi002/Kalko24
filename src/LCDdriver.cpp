@@ -19,10 +19,31 @@ void Ekran::pisi(String a, String b){
     if(a.compareTo(bafer1) != 0 || b.compareTo(bafer2) != 0){
         bafer1 = a;
         bafer2 = b;
+        String bafer1d;
+
+        if(bafer1.length() > 16){
+            bafer1d = bafer1.substring(bafer1.length()-16,bafer1.length());
+        }else{
+            bafer1d = bafer1;
+        }
+
         lcd->clear();
         lcd->setCursor(0, 0);
-        lcd->print(bafer1);
+        lcd->print(bafer1d);
         lcd->setCursor(0, 1);
         lcd->print(bafer2);
+    }
+}
+
+void Ekran::prikaziS(bool x){
+    if(x != shift){
+        shift = !shift;
+        if(shift){
+            lcd->setCursor(1, 15);
+            lcd->print("s");
+        }else{
+            lcd->setCursor(1, 15);
+            lcd->print(" ");
+        }
     }
 }
