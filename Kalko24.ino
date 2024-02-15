@@ -3,7 +3,7 @@
 #include "header/LCDdriver.h"
 #include "header/matrixTastatura.h"
 #include "header/Obrada.h"
-#include <string.h>
+#include "header/CKB.h"
 
 Ekran displey(12, 13, 8, 9, 10, 11);
 Tastatura in(0, 1, 2, 3, 4, 5, 6, 7);
@@ -15,6 +15,7 @@ int tren = 0;
 bool citaj = false;
 bool pisi = false;
 bool obrada = false;
+bool kraj = false;
 
 String t;
  
@@ -37,6 +38,11 @@ void obradaCitanja(){ // vrsi obradu citanja
     if(in.reedMatriks() == 1){
         char *c = in.reedChar();
         if(c != NULL){
+            if(kraj){
+                kraj = false;
+                bafer1 = "";
+                bafer2 = "";
+            }
             bafer1 += *c;
         }
     }  
@@ -55,17 +61,25 @@ void obradaPodataka(){
     Obrada *proces = new Obrada(bafer1, &bafer2);
     proces -> Analizator();
     delete proces;
+    kraj = true;
+}
+
+void rukovalacBaferom(){
+    CKB::brisanje(&bafer1);
 }
 
 void setup(){
-    Timer1.initialize(600);
+    Timer1.initialize(600);\
     Timer1.attachInterrupt(prekidRutina);
 }
 
 void loop(){
  
  if(citaj)obradaCitanja();
+ rukovalacBaferom();
  if(pisi)displey.pisi(bafer1, bafer2);
+ if(pisi)displey.prikaziS(in.isShift());
  proveraObrade();
  if(obrada)obradaPodataka();
+
 }

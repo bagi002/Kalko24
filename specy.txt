@@ -1,0 +1,20 @@
+Komponente:
+    -1x LCD
+    -1x Matrix Tastatur (4x4)
+    -1x Proto borad
+    -1x Potenciometar
+    -1x Otpornik 220om
+    -4x Otpornik 10kom
+    -25x musko-muske vezice
+    -12x musko-zenske vezice
+
+Spajanje:
+    -Tastatura
+        in(1-4) na pinove 0,1,2,3
+        out(5-8) na pinove 4,5,6,7
+    -LCD
+        VO - Potenciometar
+        RS - pin D12
+        RW - 0V
+        E - pin D13
+        D4 - D7 na pinove 8,9,10,11

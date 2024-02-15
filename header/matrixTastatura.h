@@ -19,6 +19,7 @@ public:
     int reedMatriks(); // citac x i y kordinata
     String KordinateTest();
     char* reedChar();
+    bool isShift();
 
 };
 

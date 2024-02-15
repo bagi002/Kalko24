@@ -51,26 +51,52 @@ char* Tastatura::reedChar(){
     if(dozvolaCitanja && reedMatriks() == 1){
       dozvolaCitanja = false;
       int n = x*10 + y;
-      switch (n){
-        case 00: *z='1'; break;
-        case 01: *z='2'; break;
-        case 02: *z='3'; break;
-        case 03: *z='+'; break;
-        case 10: *z='4'; break;
-        case 11: *z='5'; break;
-        case 12: *z='6'; break;
-        case 13: *z='-'; break;
-        case 20: *z='7'; break;
-        case 21: *z='8'; break;
-        case 22: *z='9'; break;
-        case 23: *z='*'; break;
-        case 30: shift = !shift; delete z; return NULL; break;
-        case 31: *z='0'; break;
-        case 32: *z='='; break;
-        case 33: *z='/'; break;
+      if(!shift){
+        switch (n){
+          case 00: *z='1'; break;
+          case 01: *z='2'; break;
+          case 02: *z='3'; break;
+          case 03: *z='+'; break;
+          case 10: *z='4'; break;
+          case 11: *z='5'; break;
+          case 12: *z='6'; break;
+          case 13: *z='-'; break;
+          case 20: *z='7'; break;
+          case 21: *z='8'; break;
+          case 22: *z='9'; break;
+          case 23: *z='*'; break;
+          case 30: shift = !shift; delete z; return NULL; break;
+          case 31: *z='0'; break;
+          case 32: *z='='; break;
+          case 33: *z='/'; break;
+        }
+      }else{
+        switch (n){
+          case 00: *z='1'; break;
+          case 01: *z='2'; break;
+          case 02: *z='3'; break;
+          case 03: *z='+'; break;
+          case 10: *z='4'; break;
+          case 11: *z='5'; break;
+          case 12: *z='6'; break;
+          case 13: *z='-'; break;
+          case 20: *z='7'; break;
+          case 21: *z='8'; break;
+          case 22: *z='9'; break;
+          case 23: *z='*'; break;
+          case 30: shift = !shift; delete z; return NULL; break;
+          case 31: *z='d'; break;
+          case 32: *z='='; break;
+          case 33: *z='.'; break;
+        }
       }
+
       return z;
     }
      delete z;
      return NULL;
+}
+
+bool Tastatura::isShift(){
+  return shift;
 }

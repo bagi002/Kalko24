@@ -16,3 +16,9 @@ Verzije:
     - Omogucena podrska za duze izraze sa vise operacija u izrazu
     - Optimizovana pretraga stringa putem rekruzivnih metoda
     - Implementirana pretraga na osnovu prioriteta racunskih operacija
+
+ - v0.11
+    - Omoguceno unosenje veceg broja izraza bez restartovanja ploce, unos novog karaktera poslje = rezultovace ciscenjem bafera
+    - Dodata podrska Shift koja prosiruje mogucnosti tastature , kad je tastatura u dodatnom(shift) modu vidljiv karakter s na LCDu
+    - Dodata podrska za tastere (decimalna tacka i delte)
+    - Omoguceno brisanje karaktera tokom unosa

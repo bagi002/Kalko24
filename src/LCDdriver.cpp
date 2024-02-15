@@ -32,6 +32,7 @@ void Ekran::pisi(String a, String b){
         lcd->print(bafer1d);
         lcd->setCursor(0, 1);
         lcd->print(bafer2);
+        prikaziS(!shift);
     }
 }
 
@@ -39,10 +40,10 @@ void Ekran::prikaziS(bool x){
     if(x != shift){
         shift = !shift;
         if(shift){
-            lcd->setCursor(1, 15);
+            lcd->setCursor(15, 1);
             lcd->print("s");
         }else{
-            lcd->setCursor(1, 15);
+            lcd->setCursor(15, 1);
             lcd->print(" ");
         }
     }
