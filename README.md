@@ -22,3 +22,7 @@ Verzije:
     - Dodata podrska Shift koja prosiruje mogucnosti tastature , kad je tastatura u dodatnom(shift) modu vidljiv karakter s na LCDu
     - Dodata podrska za tastere (decimalna tacka i delte)
     - Omoguceno brisanje karaktera tokom unosa
+
+ - v0.12
+    - Ispravljen bag odgovoran za gresku kod parsiranja negativnih brojeva na pocetku izraza
+    - Onemoguceno updanje koda u beskonacnu petlju prilikom pogresnih izraza

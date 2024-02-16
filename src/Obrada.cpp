@@ -63,7 +63,9 @@ void Obrada::obradaMD(){
 void Obrada::obradaPM(){
     int op = -1;
     int op2 = podatak.length()-1;
-     for(int i = 0; i < podatak.length()-1; i++){
+     int i = 0;
+     if(podatak[0] == '-') i++;
+     for(i; i < podatak.length()-1; i++){
         if(podatak[i] == '+' || podatak[i] == '-'){
             if(op == -1){
                 op = i;
@@ -76,12 +78,17 @@ void Obrada::obradaPM(){
 
      if (op != -1){
       String x = podatak.substring(0,op);
+      if(x.compareTo("") == 0)x=String(0);
       char ope = podatak[op];
       String y = podatak.substring(op+1,op2);
-    
+
       String proracun = racunaj(x, y, ope);
       podatak.replace(podatak.substring(0,op2),proracun);
-      obradaPM();
+      //*rezultat = String(ope);
+      if(op == 0 && op2 == podatak.length()-1){}else{
+        obradaPM();
+      }
+      
      }
 
 }

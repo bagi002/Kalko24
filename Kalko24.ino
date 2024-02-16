@@ -66,10 +66,10 @@ void obradaPodataka(){
 
 void rukovalacBaferom(){
     CKB::brisanje(&bafer1);
-}
+} 
 
 void setup(){
-    Timer1.initialize(600);\
+    Timer1.initialize(600);
     Timer1.attachInterrupt(prekidRutina);
 }
 
