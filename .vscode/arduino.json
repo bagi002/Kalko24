@@ -1,5 +1,5 @@
 {
+    "port": "/dev/ttyACM0",
     "board": "arduino:avr:uno",
-    "port": "COM7",
     "sketch": "Kalko24.ino"
 }

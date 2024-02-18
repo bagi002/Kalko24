@@ -11,11 +11,13 @@ Obrada::~Obrada(){
 
 String Obrada::racunaj(String x, String y, char op){
     const char* xn = x.c_str();
-    int a = atoi(xn);
+    double a = atof(xn);
     const char* yn = y.c_str();
-    int b = atoi(yn);
+    double b = atof(yn);
 
-    int rez;
+    double rez;
+
+
 
     switch(op){
         case '+': rez = a + b; break;
@@ -24,6 +26,7 @@ String Obrada::racunaj(String x, String y, char op){
         case '/': rez = a / b; break;
     }
 
+    *rezultat = String(rez);
     return String(rez);
 }
 

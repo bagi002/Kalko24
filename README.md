@@ -26,3 +26,8 @@ Verzije:
  - v0.12
     - Ispravljen bag odgovoran za gresku kod parsiranja negativnih brojeva na pocetku izraza
     - Onemoguceno updanje koda u beskonacnu petlju prilikom pogresnih izraza
+- v0.20
+    - Omogucen rad sa brojevima sa pokretnim zarezom
+    - Dodata eksplicitna obrada greske prilikom dijeljenaja sa 0 vraca INF
+    - Omoguceno parsiranje brojeva unesenih sa zarezom
+    

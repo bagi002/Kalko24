@@ -1,6 +1,7 @@
 #ifndef OBRADA_H
 #define OBRADA_H
 #include "Arduino.h"
+#include <math.h>
 
 class Obrada{
     private:
