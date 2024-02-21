@@ -30,4 +30,6 @@ Verzije:
     - Omogucen rad sa brojevima sa pokretnim zarezom
     - Dodata eksplicitna obrada greske prilikom dijeljenaja sa 0 vraca INF
     - Omoguceno parsiranje brojeva unesenih sa zarezom
-    
+- v0.21
+    - Dodata opcija unosa zagrada
+    - Dodata funkcija za obradu zagrada i prioritet operacija [BUG]

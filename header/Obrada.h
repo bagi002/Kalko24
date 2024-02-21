@@ -9,12 +9,13 @@ class Obrada{
         String *rezultat;
 
     public:
-        void Analizator();
-        void obradaMD();
+        void Analizator(String* podatakA = NULL);
+        void obradaMD(String*);
         Obrada(String, String*);
         ~Obrada();
         String racunaj(String, String, char);
-        void obradaPM();
+        void obradaPM(String*);
+        void pretragaZ(String*);
 };
 
 #endif // OBRADA_H

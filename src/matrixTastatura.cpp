@@ -72,8 +72,8 @@ char* Tastatura::reedChar(){
         }
       }else{
         switch (n){
-          case 00: *z='1'; break;
-          case 01: *z='2'; break;
+          case 00: *z='('; break;
+          case 01: *z=')'; break;
           case 02: *z='3'; break;
           case 03: *z='+'; break;
           case 10: *z='4'; break;

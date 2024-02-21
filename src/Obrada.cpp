@@ -30,20 +30,20 @@ String Obrada::racunaj(String x, String y, char op){
     return String(rez);
 }
 
-void Obrada::obradaMD(){
+void Obrada::obradaMD(String *podatakA){
     int pret = -1;
     int op = -1;
-    int sl = podatak.length()-1;
-    for(int i = 0; i < podatak.length()-1;i++){
+    int sl = podatakA->length()-1;
+    for(int i = 0; i < podatakA->length()-1;i++){
         if(op == -1){
-            if(podatak[i] == '+' || podatak[i] == '-'){
+            if((*podatakA)[i] == '+' || (*podatakA)[i] == '-'){
                 pret = i;
             }
-            if(podatak[i] == '*' || podatak[i] == '/'){
+            if((*podatakA)[i] == '*' || (*podatakA)[i] == '/'){
                 op = i;
             }
         }else{
-            if(podatak[i] == '+' || podatak[i] == '-' || podatak[i] == '*' || podatak[i] == '/'){
+            if((*podatakA)[i] == '+' || (*podatakA)[i] == '-' || (*podatakA)[i] == '*' || (*podatakA)[i] == '/'){
                 sl = i;
                 break;
             }
@@ -51,25 +51,25 @@ void Obrada::obradaMD(){
     }
 
     if(op != -1){
-      String x = podatak.substring(pret+1,op);
-      char ope = podatak[op];
-      String y = podatak.substring(op+1,sl);
+      String x = podatakA->substring(pret+1,op);
+      char ope = (*podatakA)[op];
+      String y = podatakA->substring(op+1,sl);
       
       String proracun = racunaj(x, y, ope);
 
-      podatak.replace(podatak.substring(pret+1,sl),proracun);
-      obradaMD();
+      podatakA->replace(podatakA->substring(pret+1,sl),proracun);
+      obradaMD(&podatak);
     }
   
 }
 
-void Obrada::obradaPM(){
+void Obrada::obradaPM(String *podatakA){
     int op = -1;
-    int op2 = podatak.length()-1;
+    int op2 = podatakA->length()-1;
      int i = 0;
-     if(podatak[0] == '-') i++;
-     for(i; i < podatak.length()-1; i++){
-        if(podatak[i] == '+' || podatak[i] == '-'){
+     if((*podatakA)[0] == '-') i++;
+     for(i; i < podatakA->length()-1; i++){
+        if((*podatakA)[i] == '+' || (*podatakA)[i] == '-'){
             if(op == -1){
                 op = i;
             }else{
@@ -80,26 +80,66 @@ void Obrada::obradaPM(){
      }
 
      if (op != -1){
-      String x = podatak.substring(0,op);
+      String x = podatakA->substring(0,op);
       if(x.compareTo("") == 0)x=String(0);
-      char ope = podatak[op];
-      String y = podatak.substring(op+1,op2);
+      char ope = (*podatakA)[op];
+      String y = podatakA->substring(op+1,op2);
 
       String proracun = racunaj(x, y, ope);
-      podatak.replace(podatak.substring(0,op2),proracun);
+      podatakA->replace(podatakA->substring(0,op2),proracun);
       //*rezultat = String(ope);
-      if(op == 0 && op2 == podatak.length()-1){}else{
-        obradaPM();
+      if(op == 0 && op2 == podatakA->length()-1){}else{
+        obradaPM(&podatak);
       }
       
      }
+}
+
+void Obrada::pretragaZ(String* x){
+    int a = -1, b = -1;
+    for(int i = 0; i < x->length(); i++){
+        if((*x)[i] == '('){
+            a = i;
+        }
+        if((*x)[i] == ')'){
+            b = i;
+            break;
+        }
+    }
+
+   if((a != -1 && b == -1) || (a == -1 && b != -1)){
+        String m = "Greska " + String(a) + " " + String(b);
+        *x = m;
+        return;
+    }
+
+    if(a != -1 && b != -1){
+    String *intern = new String(x->substring(a, b+1));
+    String kopija = *intern;
+    *intern = intern->substring(1, intern->length() - 1);
+    Analizator(intern);
+    x->replace(kopija, *intern);
+    pretragaZ(x);
+    }else{
+        return;
+    }
+
 
 }
 
-void Obrada::Analizator(){
-    obradaMD();
-    obradaPM();
+void Obrada::Analizator(String *x){
+    if(x == NULL){
+        x = &podatak;0
+    }
+    pretragaZ(x);
+    obradaMD(x);
+    obradaPM(x);
 
-    podatak = " = " + podatak;
-    *rezultat = podatak;
+    
+    if(x == &podatak){
+        *x = " = " + *x;
+        *rezultat = podatak;
+    }
 }
+
+
