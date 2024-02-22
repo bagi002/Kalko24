@@ -33,3 +33,5 @@ Verzije:
 - v0.21
     - Dodata opcija unosa zagrada
     - Dodata funkcija za obradu zagrada i prioritet operacija [BUG]
+- v0.22
+    - Ispravljeni dio BUGa ali kod idalje ne radi za zagrade(problem negdje kod poziva analizatora u metodi pretragaZ)

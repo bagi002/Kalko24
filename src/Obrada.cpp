@@ -26,7 +26,6 @@ String Obrada::racunaj(String x, String y, char op){
         case '/': rez = a / b; break;
     }
 
-    *rezultat = String(rez);
     return String(rez);
 }
 
@@ -64,8 +63,10 @@ void Obrada::obradaMD(String *podatakA){
 }
 
 void Obrada::obradaPM(String *podatakA){
+    String privremeni = *podatakA;
+
     int op = -1;
-    int op2 = podatakA->length()-1;
+    int op2 = podatakA->length();
      int i = 0;
      if((*podatakA)[0] == '-') i++;
      for(i; i < podatakA->length()-1; i++){
@@ -79,15 +80,17 @@ void Obrada::obradaPM(String *podatakA){
         }
      }
 
+   
+
      if (op != -1){
       String x = podatakA->substring(0,op);
       if(x.compareTo("") == 0)x=String(0);
       char ope = (*podatakA)[op];
       String y = podatakA->substring(op+1,op2);
-
+      
       String proracun = racunaj(x, y, ope);
+
       podatakA->replace(podatakA->substring(0,op2),proracun);
-      //*rezultat = String(ope);
       if(op == 0 && op2 == podatakA->length()-1){}else{
         obradaPM(&podatak);
       }
@@ -114,14 +117,20 @@ void Obrada::pretragaZ(String* x){
     }
 
     if(a != -1 && b != -1){
-    String *intern = new String(x->substring(a, b+1));
-    String kopija = *intern;
-    *intern = intern->substring(1, intern->length() - 1);
-    Analizator(intern);
-    x->replace(kopija, *intern);
+    String intern = x->substring(a, b+1);
+    String kopija = intern;
+    
+    intern = intern.substring(1, intern.length() - 1);
+    //*rezultat = intern;
+         //  *rezultat = *x;
+    Analizator(&intern);
+    //*rezultat = intern;
+
+    x->replace(kopija, intern); 
+ 
     pretragaZ(x);
     }else{
-        return;
+       // return;
     }
 
 
@@ -129,11 +138,17 @@ void Obrada::pretragaZ(String* x){
 
 void Obrada::Analizator(String *x){
     if(x == NULL){
-        x = &podatak;0
+        x = &podatak;
+       
     }
+
     pretragaZ(x);
+   /*                if(x == &podatak){
+        *rezultat = *x;
+    }*/
     obradaMD(x);
     obradaPM(x);
+
 
     
     if(x == &podatak){
